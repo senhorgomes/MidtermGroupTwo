@@ -36,7 +36,7 @@ Here is a better idea of how to go about each part:
 
 - Css → Add some basic styling, maybe some bootstrap too. Later you can flesh out the app even more with more styling, fonts, to fully establish the image of the app.
 
-![workflow](https://github.com/senhorgomes/MidtermGroupOne/blob/main/devops.png)
+![workflow](https://github.com/senhorgomes/MidtermGroupTwo/blob/main/devops.png)
 What should happen is each group member should be always working on a part of the app. Once one member is done with the backend of one part, they should move onto another set of routes while someone else is working on the frontend.
 
 ## Reminder! NO LOGIN OR REGISTER ROUTES
