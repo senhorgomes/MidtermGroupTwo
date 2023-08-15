@@ -1,6 +1,5 @@
 # Planning
 
-Today we covered a few things in planning for your midterm.
 For your midterm you will want to spend as much time as possible planning the app before coding it. This is to ensure you have a solid vision of what you want to build. By planning, you are also preventing yourself from backtracking and having to rebuild major components of the app. 
 Here are a couple things you should do for planning:
 
@@ -8,13 +7,13 @@ Here are a couple things you should do for planning:
 
 In software development and product management, a user story is an informal, natural language description of features of a software system.
 
-- As a user, I want to be able to make polls for my friends
+- As a user, I want to be able to insert a word, have it auto catergorize into one of four categories. To buy, to read, to eat, to watch
 
-- As a user, I want to be able to share my polls to friends
+- As a user, I want to be able to recategorize my entry/edit it
 
-- As a user, I want to be able to see the results of those polls, and have them only visible to me
+Stretch - As a user, I want to be able to mark my entry as done
 
-- As a user, I want a nightmode for my app
+Stretch - As a user, I want to be able to drag and drop my entries into other catergories.
 
 ## Prototype(MVP)
 
