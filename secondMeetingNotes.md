@@ -48,7 +48,8 @@ What should happen is each group member should be always working on a part of th
 ## Reminder! NO LOGIN OR REGISTER ROUTES
 
 These will be stretch features, instead what you'll be doing is as simple as setting a cookie with a user id if needed.
-For example, you can set a different user as logged in by making a get request to /login/1, or /login/2.
+For example, you can set a different user as logged in by making a get request to `/admin`.
+Restaurant view will be `/`
 
 ## Git workflow
 
