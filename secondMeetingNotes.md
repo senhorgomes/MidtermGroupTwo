@@ -57,10 +57,12 @@ Whenever you are working on a new feature, please create a new branch.
 
 - feature/name-of-feature
  Once you're done with a branch, you then merge it into main
+After adding and commiting and pushing our changes to feature/orders
 
 git checkout main
 git pull origin main <- This allows your main branch to have the latest code on main
-git pull origin feature/name-of-feature <- This allows you to merge your branch onto main
+git pull origin feature/orders <- This allows you to merge your branch onto main
+git add . & git commit again
 git push origin main <- Then we push the changes onto Github main
 
 - fix/name-of-bug or name-of-feature-update
@@ -71,24 +73,36 @@ When you’re merging to main, please make it a group meeting so you can deal co
 # Backend
 Will include all your routes (GET and POST routes), all your schema and seeds, and all necessary db queries.
 Some routes will only return data, some routes will render a page.
-- Look at what data you need for each page to render fully or fufill a functionality (Adding new contribution, liking a post)
-- Next, create SQL queries to render that information/perform that action -> For the frontpage create an sql query that grabs the last 5 stories(completed or not) with the contributions -> SELECT statement with multiple joins
+- Look at what data you need for each page to render fully or fufill a functionality (Menu items)
+- Next, create SQL queries to render that information/perform that action -> For the frontpage create an sql query that grabs all menu items -> `SELECT * FROM menu_items;`
 - Once we have created the SQL query, we're going to test it in psql, simply by running it.
-- Create a dbQuery function in our app, create a new file called `stories.js`
+- Create a dbQuery function in our app, create a new file called `menu.js`
 ```
-const getFrontpageStories = () => {
-  return db.query('SELECT... LIMIT 5')
-    .then(data => {
-      return data.rows;
-    });
-};
+const getMenuItems = () => {
+ db.query('SELECT * FROM menu_items;')
+.then(data => return data.rows)
+}
 ```
+What is being returned is an array of objects
 - We can create our route
 ```
-app.get('/', (req, res) => {
- stories.getFrontpageStories()
-.then((stories) => {
-res.json(stories);
-)
+const express = require('express');
+const router  = express.Router();
+const menuQueries = require('../db/queries/menu');
+
+router.get('/', (req, res) => {
+  menuQueries.getMenuItems()
+    .then(menuItems => {
+      //Once you have the view for this page, you can switch it to res.render('homepage');
+      res.json({ menuItems });
+    })
+    .catch(err => {
+      res
+        .status(500)
+        .json({ error: err.message });
+    });
+});
+
+module.exports = router;
 ```
 - Then we can test it and move onto other routes
