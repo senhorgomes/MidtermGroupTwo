@@ -8,11 +8,18 @@ We also covered your ERDs, Wireframes, and Userstories.
 The first step would be to establish a database. Create a schema and some seeds so you can have a small set of data to work with the app.
 At most, you would want 3 seeds, however you can create more later on.
 
-- Schema
- - Create your tables
-- Seeds
- - Testing
- - 3 users, 3 maps, 3 favs, 3-6 points
+- Schemas
+
+- Test database
+ - Small sample, maybe 3 seeds for each table
+ - 3 Users, 3 stories (One for each user, one of them being complete), 3 constributions (One story with 2, and one story with one), have more than 3 seeds for your likes table
+
+ - Run the command \i *file name*
+
+ - 01_users.sql
+ - 02_stories.sql
+ - 03_contributions.sql
+ - 04_likes.sql
 
 ## Next step and the rest of the app workflow
 
@@ -22,6 +29,11 @@ Ideally, you would want to work in this flow:
 - Frontend
 - CSS
 - Repeat
+
+Each member works on a feature
+
+  - Backend/Frontend/CSS 
+  - Backend/Frontend/CSS
 
 Here is a better idea of how to go about each part:
 
@@ -40,5 +52,42 @@ For example, you can set a different user as logged in by making a get request t
 
 ## Git workflow
 
-Whenever you are working on a new feature, please create a new branch. 
+Whenever you are working on a new feature, please create a new branch.
+
+- feature/name-of-feature
+ Once you're done with a branch, you then merge it into main
+
+git checkout main
+git pull origin main <- This allows your main branch to have the latest code on main
+git pull origin feature/name-of-feature <- This allows you to merge your branch onto main
+git push origin main <- Then we push the changes onto Github main
+
+- fix/name-of-bug or name-of-feature-update
+
 When you’re merging to main, please make it a group meeting so you can deal conflicts. (merge conflicts)
+
+
+# Backend
+Will include all your routes (GET and POST routes), all your schema and seeds, and all necessary db queries.
+Some routes will only return data, some routes will render a page.
+- Look at what data you need for each page to render fully or fufill a functionality (Adding new contribution, liking a post)
+- Next, create SQL queries to render that information/perform that action -> For the frontpage create an sql query that grabs the last 5 stories(completed or not) with the contributions -> SELECT statement with multiple joins
+- Once we have created the SQL query, we're going to test it in psql, simply by running it.
+- Create a dbQuery function in our app, create a new file called `stories.js`
+```
+const getFrontpageStories = () => {
+  return db.query('SELECT... LIMIT 5')
+    .then(data => {
+      return data.rows;
+    });
+};
+```
+- We can create our route
+```
+app.get('/', (req, res) => {
+ stories.getFrontpageStories()
+.then((stories) => {
+res.json(stories);
+)
+```
+- Then we can test it and move onto other routes
